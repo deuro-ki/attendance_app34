@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = '新規作成に成功しました。'
       log_in @user
+      params[:session][:remember_me] == '1'? remember(user) : forget(user)
       redirect_to @user
       # 保存に成功した場合は、ここに記述した処理が実行されます。
     else
